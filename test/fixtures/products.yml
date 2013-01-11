@@ -1,10 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
+
+
+dukes_product:
+  title: Naslov iz fixtura
+  description: 
+    opis fixtura
+    drugi red
+  image_url: slika..jpg
+  price: 9.99
+
 one:
   title: MyString
   description: MyText
   image_url: MyString
-  price: 9.99
 
 two:
   title: MyString
