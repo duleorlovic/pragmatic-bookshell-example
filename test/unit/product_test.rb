@@ -56,5 +56,15 @@ class ProductTest < ActiveSupport::TestCase
               product.errors[:title].join('; ')
   end
 
+  test "title should be at least 6 char long" do
+    product = Product.new(:title => "short",
+                    :description => "yyy",
+                    :image_url => "zzz.jpg",
+                    :price => 3.4)
+    assert product.invalid?
+    assert product.errors[:title].any?
+    assert_equal "is too short (minimum is 6 characters)", 
+                product.errors[:title].join('; ')
+  end
   
 end
