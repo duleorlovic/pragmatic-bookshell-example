@@ -127,6 +127,11 @@
 #columns {
   background: #141;
 }
+#columns #side #time {
+  color: #44a;
+  font-weight: bold;
+  margin-right: 2em;
+}
 
 #main {
   margin-left: 17em;

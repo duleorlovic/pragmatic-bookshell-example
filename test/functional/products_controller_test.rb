@@ -53,4 +53,13 @@ class ProductsControllerTest < ActionController::TestCase
 
     assert_redirected_to products_path
   end
+
+  test "should have Show,Edit,Delete links" do
+    get :index
+    assert_select '.list_actions' do |elements|
+      elements.each do |element|
+        assert_select element,"a",3
+      end
+    end
+  end
 end
