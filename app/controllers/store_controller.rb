@@ -1,5 +1,6 @@
 class StoreController < ApplicationController
   def index
+    @cart = current_cart
     @products = Product.all
     if session[:counter].nil?
       @counter=1
