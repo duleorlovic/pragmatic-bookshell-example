@@ -1,0 +1,5 @@
+koristi se samo:
+store -> index, 
+product -> all
+cat -> create, show, destroy
+line_item -> create, index, destroy,
