@@ -1,0 +1,2 @@
+
+$("#cart").hide('slow','swing')
