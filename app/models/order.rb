@@ -1,8 +1,8 @@
 class Order < ActiveRecord::Base
-  PAYMENT_TYPES = [ "Check", "Credit card", "Purchare order"]
   has_many :line_items, :dependent => :destroy
+  belongs_to :payment_type
 
-  validates :pay_type, :inclusion => PAYMENT_TYPES
+  validates :payment_type, presence: true
   validates :name, :address, :email, :presence => true
 
   def add_line_items_from_cart(cart)

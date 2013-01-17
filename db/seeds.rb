@@ -44,3 +44,9 @@ Product.create(:title => 'Rails Test Prescriptions',
       </p>},
   :image_url => 'rails.png',
   :price => 43.75)
+PaymentType.delete_all 
+PaymentType.create :name => "Check"
+PaymentType.create :name => "Credit card"
+PaymentType.create :name => "Purchase order"
+
+LineItem.delete_all
