@@ -1,5 +1,5 @@
-koristi se samo:
 store -> index, 
-product -> all
-cat -> create, show, destroy
-line_item -> create, index, destroy,
+products -> index, delete, show, update, edit, new, create,  who_bought
+carts -> create, show, destroy
+line_items -> create, destroy, decrement
+orders -> new, create
