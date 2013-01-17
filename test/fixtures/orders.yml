@@ -3,11 +3,11 @@
 one:
   name: MyString
   address: MyText
-  email: MyString
-  pay_type: MyString
+  email: MyStringi@example.org
+  pay_type: Check
 
 two:
   name: MyString
   address: MyText
-  email: MyString
-  pay_type: MyString
+  email: MyString@example.org
+  pay_type: Credit card
