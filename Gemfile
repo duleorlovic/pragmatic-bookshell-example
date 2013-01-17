@@ -39,3 +39,4 @@ gem 'jquery-rails'
 
 gem 'therubyracer'
 gem 'rack', '= 1.4.1'
+gem 'will_paginate', '>= 3.0.pre'
