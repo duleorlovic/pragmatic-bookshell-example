@@ -34,4 +34,6 @@ Depot::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  ROOT_URL = "localhost:3000"
 end
