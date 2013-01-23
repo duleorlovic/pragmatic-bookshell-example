@@ -7,6 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Product.delete_all
+Order.delete_all
+PaymentType.delete_all 
+LineItem.delete_all
+
 Product.create(:title => 'Web Design for Developers',
   :description => 
     %{<p>
@@ -44,9 +48,7 @@ Product.create(:title => 'Rails Test Prescriptions',
       </p>},
   :image_url => 'rails.png',
   :price => 43.75)
-PaymentType.delete_all 
 PaymentType.create :name => "Check"
 PaymentType.create :name => "Credit card"
 PaymentType.create :name => "Purchase order"
 
-LineItem.delete_all

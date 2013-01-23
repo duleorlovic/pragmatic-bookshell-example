@@ -4,11 +4,9 @@ one:
   name: MyString
   address: MyText
   email: dule@example.org
-  pay_type: Check
   payment_type: one
-
+  ship_date: 2011-01-01
 two:
   name: MyString
   address: MyText
   email: MyString@example.org
-  pay_type: Credit card
