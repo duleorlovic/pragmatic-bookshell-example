@@ -10,7 +10,7 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
     #cart, and check out, filling in their details on the checkout form. When
     #they submit, an order is created containing their information, along with a
     #single line item corresponding to the product they added to their cart.
-    #
+    #mail for confirmation and mail for ship date is send
     LineItem.delete_all
     Order.delete_all
     ruby_book = products(:dukes_product)
@@ -60,8 +60,40 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
     assert_equal ["dave@example.com"], mail.to
     assert_equal 'from@example.com', mail[:from].value
     assert_equal "Pragmatic Store Order Confirmation", mail.subject
-
-
-
+    
+    ship_date_expected = Time.now.to_date
+    put_via_redirect "orders/"+order.id.to_s, 
+      :order => { :id => order.id,
+           :name => "Dave Thomas",
+          :address => "123 The Street",
+          :email => "dave@example.com",
+          :payment_type_id => payment_types(:one).id,
+          :ship_date => ship_date_expected}
+    assert_response :success 
+    orders = Order.all
+    assert_equal 1, orders.size
+    order = orders[0]
+    assert_equal ship_date_expected, order.ship_date 
+    
+    mail = ActionMailer::Base.deliveries.last
+    assert_equal ["dave@example.com"], mail.to
+    assert_equal 'from@example.com', mail[:from].value
+    assert_equal "Pragmatic Store Order Shipped", mail.subject
   end
+
+
+  test "sending error detected email" do
+    # A user goes to the unknown cart
+    # it should te redirected and
+    # email error_detected send
+    get "/carts/wobble"
+    assert_response :redirect
+    assert_template "/"
+
+    mail = ActionMailer::Base.deliveries.last
+    assert_equal ["duleorlovic@gmail.com"], mail.to
+    assert_equal 'from@example.com', mail[:from].value
+    assert_equal "error detected", mail.subject
+  end
+  
 end
