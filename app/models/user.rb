@@ -6,6 +6,13 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   validate :password_must_be_present
+  after_destroy :ensure_an_admin_remains
+
+  def ensure_an_admin_remains
+    if User.count.zero?
+      raise "Can't delete last user"
+    end
+  end
  
   def User.encrypt_password(password, salt)
     Digest::SHA2.hexdigest(password + "wibble" + salt)
@@ -24,6 +31,10 @@ class User < ActiveRecord::Base
     if user = find_by_name(name)
       if user.hashed_password == encrypt_password(password, user.salt)
         user
+      end
+    else
+      if User.count == 0
+        User.create :name => name, :password => password
       end
     end
   end

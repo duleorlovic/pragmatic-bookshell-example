@@ -10,6 +10,7 @@ Product.delete_all
 Order.delete_all
 PaymentType.delete_all 
 LineItem.delete_all
+User.delete_all
 
 Product.create(:title => 'Web Design for Developers',
   :description => 
