@@ -24,4 +24,10 @@ class Notifier < ActionMailer::Base
 
     mail to: order.email, :subject => 'Pragmatic Store Order Shipped'
   end
+
+
+  def error_detected(er)
+    @er = er
+    mail to: "duleorlovic@gmail.com", :subject => 'error detected'
+  end
 end
