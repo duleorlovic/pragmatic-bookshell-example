@@ -6,6 +6,8 @@
   <td><%= line_item.quantity %> &times; </td>
   <td><%= line_item.product.title %></td>
   <td class="item_price"><%= number_to_currency(line_item.total_price) %></td>
-  <td class="item_decrement"><%= button_to 'V', decrement_line_item_path(line_item), method: :post, :remote => true %></td>
-<!--  <td class="item_remove"><%= button_to 'Remove', line_item, :method => :delete %> </td>-->
+  <% if @order.nil? %>
+    <td class="item_decrement"><%= button_to 'V', decrement_line_item_path(line_item), method: :post, :remote => true %></td>
+    <!--  <td class="item_remove"><%= button_to 'Remove', line_item, :method => :delete %> </td>-->
+  <% end %>
 </tr>
