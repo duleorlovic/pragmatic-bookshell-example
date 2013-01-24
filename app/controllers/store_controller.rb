@@ -2,8 +2,12 @@ class StoreController < ApplicationController
   skip_before_filter :authorize
 
   def index
-    @cart = current_cart
-    @products = Product.all
+    if params[:set_locale]
+      redirect_to store_path(:locale => params[:set_locale])
+    else
+      @cart = current_cart
+      @products = Product.all
+    end
     if session[:counter].nil?
       @counter=1
     else

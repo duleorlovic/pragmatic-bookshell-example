@@ -9,7 +9,15 @@
 <body id="store">
   <div id="banner">
     <%= image_tag("rails.png",:size => "40x40") %>
-    <%= @page_title || "Pragmetic bookshelf" %>
+    <%= @page_title || t('.title') %> 
+    <%= form_tag store_path, :class => 'locale' do %>
+      <%= select_tag 'set_locale',
+      options_for_select(LANGUAGES, I18n.locale.to_s),
+      :onchange => 'this.form.submit()' %>
+      <%= submit_tag 'submit' %>
+      <%= javascript_tag "$$('.locale input').each(Element.hide)" %>
+    <% end %>
+
   </div>
   <div id="columns">
     <div id="side">
@@ -19,10 +27,10 @@
         <% end %>
       <% end %>
 
-      <a href="http://<%= ROOT_URL %>/">Home</a><br />
-      <a href="http://<%= ROOT_URL %>/faq">Questions</a><br />
-      <a href="http://<%= ROOT_URL %>/news">News</a><br />
-      <a href="http://<%= ROOT_URL %>/contact">Contact</a><br />
+      <a href="http://<%= ROOT_URL %>/"><%= t('.Home') %></a><br />
+      <a href="http://<%= ROOT_URL %>/"><%= t('.questions') %></a><br />
+      <a href="http://<%= ROOT_URL %>/"><%= t('.news') %></a><br />
+      <a href="http://<%= ROOT_URL %>/"><%= t('.contact') %></a><br />
       <div id="time">
         <%= Time.now %>
       </div>
