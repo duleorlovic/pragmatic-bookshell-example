@@ -38,11 +38,14 @@ class ProductTest < ActiveSupport::TestCase
     ok = %w{ fred.gif house.jpg 1.png }
     bad = %w{ fred 1.pdf one.doc }
     
+    product = products(:dukes_product)
     ok.each do |name|
-      #assert new_product(name).validate?, "#{name} shouldn't be invalid"
+      product.image_url = name
+      assert product.valid?, "#{name} shoul be valid"
     end
     bad.each do |name|
-      #assert new_product(name).validate?, "#{name} shouldn't be valid"
+      product.image_url = name
+      assert product.invalid?, "#{name} shouldn't be valid"
     end
   end
   

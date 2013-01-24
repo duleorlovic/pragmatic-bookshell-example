@@ -26,7 +26,7 @@ class LineItemsControllerTest < ActionController::TestCase
 
   test "should create line_item via ajax" do
     assert_difference('LineItem.count') do
-      xhr :post, :create, :product_id => products(:dukes_product).id
+      xhr :post, :create, :product_id => products(:dukes_product)
     end
 
     assert_response :success

@@ -75,6 +75,9 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.destroy
 
+    if @product.errors.any?
+      flash[:notice] = @product.errors.messages[:base][0]
+    end
     respond_to do |format|
       format.html { redirect_to products_url }
       format.json { head :no_content }
